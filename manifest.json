@@ -1,0 +1,15 @@
+{
+  "name": "FreshBookMark",
+  "description": "This app simply gives you quick access to your Freshbooks account.",
+  "version": "1.2",
+  "app": {
+    "launch": {
+      "local_path": "main.html"
+    }
+  },
+  "icons": {
+    "16": "icon_16.png",
+    "128": "icon_128.png"
+  },
+  "options_page": "options.html"
+}

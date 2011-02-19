@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title>FreshBookMark URL</title>
+	<style>
+		html{background:#eee;}
+		body{width:920px;height:300px;background:white;border-radius:10px;-webkit-box-shadow:0 3px 10px grey;font:20px / 36px Arial, Helvetica, sans-serif;margin:20px auto;padding:20px;}
+		#help{text-align:center;}
+		#status{text-align:center;color:green;}
+		label{display:block;text-align:center;font-size:36px;color:grey;width:840px;margin:0 auto;}
+		input{width:auto;color:black;border:0;border-bottom:1px dotted grey;font-size:36px;text-align:right;}
+		input:focus{outline:none;border-bottom-color:black;}
+		button{font-size:36px;display:block;width:770px;cursor:pointer;margin:20px auto;padding:10px 0;}
+	</style>
+</head>
+<script type="text/javascript">
+	// Saves options to localStorage.
+	function save_options() {
+	  var text = document.getElementById("url");
+	  var url = text.value;
+	  localStorage["saved_url"] = url;
+
+	  // Update status to let user know options were saved.
+	  var status = document.getElementById("status");
+	  status.innerHTML = "URL Saved.";
+	  setTimeout(function() {
+		status.innerHTML = "";
+	  }, 750);
+	  restore_options();
+	}
+
+	// Restores text box state to saved value from localStorage.
+	function restore_options() {
+	  var saved = localStorage["saved_url"];
+	  if (saved == undefined || saved == null || saved == '') {
+		var help = document.getElementById("help");
+		help.innerHTML = "<p>It appears you have not set up your Freshbooks URL yet. Please do so by typing it below.</p><p>You can always get back to this page by right clicking the app icon and choosing <strong>Options</strong></p>";
+		return;
+	  }
+	  var text = document.getElementById("url");
+	  text.value = saved;
+	}
+</script>
+<body onload="restore_options()">
+<div id="help">
+	<p>You can always get back to this page by right clicking the app icon and choosing <strong>Options</strong></p>
+</div>
+<label for="url">https://<input type="text" id="url" name="url" />.freshbooks.com</label>
+<button onclick="save_options()">Save</button>
+<div id="status"></div>
+</body>
+</html>
